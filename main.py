@@ -11,34 +11,46 @@ import pstats
 import io
 import sys
 
-LIST_SIZE = 500
+LIST_SIZE = 50000
 MAX_VALUE = sys.maxsize
 NUM_ITERATIONS = 20
+word_file = "/usr/share/dict/words"
+WORDS = open(word_file).read().splitlines()
+LIST_TYPE = "integer"
+
+
+def get_list():
+    if LIST_TYPE == "integer":
+        return list(np.random.randint(low=1, high=MAX_VALUE, size=LIST_SIZE))
+    elif LIST_TYPE == "float":
+        return list(np.random.random(size=LIST_SIZE))
+    elif LIST_TYPE == "string":
+        return list(np.random.choice(WORDS, size=5))
 
 
 def mergesort_test():
-    numbers = list(np.random.randint(low=1, high=MAX_VALUE, size=LIST_SIZE))
-    mergesort.merge_sort(numbers, 0, len(numbers)-1)
+    sort_list = get_list()
+    mergesort.merge_sort(sort_list, 0, len(sort_list)-1)
 
 
 def quicksort_test():
-    numbers = list(np.random.randint(low=1, high=MAX_VALUE, size=LIST_SIZE))
-    quicksort.quicksort(numbers, 0, len(numbers)-1)
+    sort_list = get_list()
+    quicksort.quicksort(sort_list, 0, len(sort_list)-1)
 
 
 def revised_quicksort_test():
-    numbers = list(np.random.randint(low=1, high=MAX_VALUE, size=LIST_SIZE))
-    revised_quicksort.revised_quicksort(numbers, 0, len(numbers)-1, 100)
+    sort_list = get_list()
+    revised_quicksort.revised_quicksort(sort_list, 0, len(sort_list)-1, 100)
 
 
 def shellsort_test():
-    numbers = list(np.random.randint(low=1, high=MAX_VALUE, size=LIST_SIZE))
-    shellsort.shell_sort(numbers, get_shellsort_gaps())
+    sort_list = get_list()
+    shellsort.shell_sort(sort_list, get_shellsort_gaps())
 
 
 def insertionsort_test():
-    numbers = list(np.random.randint(low=1, high=MAX_VALUE, size=LIST_SIZE))
-    insertionsort.insertion_sort(numbers)
+    sort_list = list(np.random.randint(low=1, high=MAX_VALUE, size=LIST_SIZE))
+    insertionsort.insertion_sort(sort_list)
 
 
 def get_shellsort_gaps():

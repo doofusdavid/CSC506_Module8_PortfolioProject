@@ -1,6 +1,11 @@
-"Sort Method", "Sort Datatype", "CPU Time"
-"Merge Sort", "Integer", 0.293
-"Quick Sort", "Integer", 0.178
-"Modified Quick Sort", "Integer", 0.245
-"Shell Sort", "Integer", 0.688
-"Insertion Sort", "Integer", 192.244
+Sort Method,Sort Datatype,CPU Time,List Size
+Merge Sort,Integer,0.025,5000
+Quick Sort,Integer,0.013,5000
+Modified Quick Sort,Integer,0.021,5000
+Shell Sort,Integer,0.039,5000
+Insertion Sort,Integer,1.989,5000
+Merge Sort,Integer,0.348,50000
+Quick Sort,Integer,0.187,50000
+Modified Quick Sort,Integer,0.286,50000
+Shell Sort,Integer,0.726,50000
+Insertion Sort,Integer,212.521,50000
