@@ -1,0 +1,6 @@
+"Sort Method", "Sort Datatype", "CPU Time"
+"Merge Sort", "Integer", 0.293
+"Quick Sort", "Integer", 0.178
+"Modified Quick Sort", "Integer", 0.245
+"Shell Sort", "Integer", 0.688
+"Insertion Sort", "Integer", 192.244

@@ -1,0 +1,39 @@
+Integers: Max Size:999: List Size: 5000
+         500650 function calls (298642 primitive calls) in 194.244 seconds
+
+   Random listing order was used
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+    65534    0.005    0.000    0.005    0.000 {method 'append' of 'list' objects}
+        5    0.000    0.000    0.000    0.000 {method 'items' of 'dict' objects}
+        5    0.000    0.000    0.000    0.000 {built-in method builtins.getattr}
+    65523    0.005    0.000    0.005    0.000 {built-in method builtins.len}
+        1    0.002    0.002    0.293    0.293 main.py:19(mergesort_test)
+        1    0.002    0.002    0.178    0.178 main.py:24(quicksort_test)
+        1    0.002    0.002    0.245    0.245 main.py:29(revised_quicksort_test)
+        1    0.002    0.002    0.688    0.688 main.py:34(shellsort_test)
+        1    0.000    0.000    0.000    0.000 main.py:44(get_shellsort_gaps)
+        1    0.017    0.017  194.244  194.244 main.py:52(perform_test)
+        1    0.003    0.003  192.823  192.823 main.py:39(insertionsort_test)
+    49999    0.136    0.000    0.136    0.000 quicksort.py:1(partition)
+        5    0.000    0.000    0.000    0.000 fromnumeric.py:2881(prod)
+        5    0.000    0.000    0.000    0.000 fromnumeric.py:2876(_prod_dispatcher)
+        5    0.000    0.000    0.000    0.000 fromnumeric.py:70(_wrapreduction)
+        5    0.000    0.000    0.000    0.000 fromnumeric.py:71(<dictcomp>)
+        5    0.000    0.000    0.000    0.000 {built-in method numpy.core._multiarray_umath.implement_array_function}
+        5    0.000    0.000    0.000    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+        1    0.000    0.000    0.000    0.000 {built-in method math.log}
+        5    0.000    0.000    0.000    0.000 <__array_function__ internals>:2(prod)
+        5    0.002    0.000    0.002    0.000 {method 'randint' of 'numpy.random.mtrand.RandomState' objects}
+  99999/1    0.042    0.000    0.291    0.291 mergesort.py:37(merge_sort)
+    49999    0.249    0.000    0.249    0.000 mergesort.py:1(merge)
+  99999/1    0.039    0.000    0.176    0.176 quicksort.py:37(quicksort)
+      998    0.170    0.000    0.170    0.000 revised_quicksort.py:1(slice_insertion_sort)
+     1006    0.070    0.000    0.070    0.000 revised_quicksort.py:11(partition)
+   2013/1    0.001    0.000    0.242    0.242 revised_quicksort.py:47(revised_quicksort)
+    65519    0.652    0.000    0.658    0.000 shellsort.py:1(insertion_sort_interleaved)
+        1    0.024    0.024    0.686    0.686 shellsort.py:14(shell_sort)
+        1  192.820  192.820  192.820  192.820 insertionsort.py:1(insertion_sort)
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+
+
