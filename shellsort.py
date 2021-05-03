@@ -1,4 +1,4 @@
-def insertion_sort_interleaved(numbers, start_index, gap):
+def insertion_sortinterleaved(numbers, start_index, gap):
     swaps = 0
     for i in range(start_index + gap, len(numbers), gap):
         j = i
@@ -15,5 +15,5 @@ def shell_sort(numbers, gap_values):
     swaps = []
     for gap_value in gap_values:
         for i in range(gap_value):
-            swaps.append(insertion_sort_interleaved(numbers, i, gap_value))
+            swaps.append(insertion_sortinterleaved(numbers, i, gap_value))
     return swaps

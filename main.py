@@ -39,7 +39,7 @@ def run_single_test(algorithm, list_type, list_size):
     elif algorithm == "quicksort":
         quicksort.quick_sort(sort_list, 0, len(sort_list)-1)
     elif algorithm == "revised_quicksort":
-        revised_quicksort.revised_quicksort(
+        revised_quicksort.revised_quick_sort(
             sort_list, 0, len(sort_list)-1, 50)
     elif algorithm == "shell_sort":
         shellsort.shell_sort(sort_list, get_shellsort_gaps(list_size))
@@ -52,9 +52,10 @@ def run_single_test(algorithm, list_type, list_size):
 
     results = s.getvalue()
     for line in results.splitlines():
-        if "_sort" in line:
-            split_line = line.strip().split("    ")
-            return(split_line[3])
+        if "_sort)" in line:
+            print(line)
+            split_line = line.split()
+            return(split_line[4])
 
 
 def get_shellsort_gaps(list_size):
@@ -69,7 +70,7 @@ def run_tests():
     results = []
     for algorithm in ["merge_sort", "quicksort", "revised_quicksort", "shell_sort"]:
         for list_type in ["integer", "float", "string"]:
-            for list_size in [100, 1000, 10000]:
+            for list_size in [5000, 50000, 500000]:
                 time = run_single_test(algorithm, list_type, list_size)
                 results.append([algorithm,  list_type, list_size, time])
 

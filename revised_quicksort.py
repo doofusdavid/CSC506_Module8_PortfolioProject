@@ -1,4 +1,4 @@
-def slice_insertion_sort(num_list, start, end):
+def slice_insertionsort(num_list, start, end):
     for i in range(start+1, end+1):
         val = num_list[i]
         j = i
@@ -44,19 +44,19 @@ def partition(numbers, start_index, end_index):
     return high
 
 
-def revised_quicksort(numbers, start_index, end_index, threshold):
+def revised_quick_sort(numbers, start_index, end_index, threshold):
     # Only attempt to sort the list segment if there are
     # at least 2 elements
     if end_index <= start_index:
         return
     if end_index - start_index <= threshold:
-        slice_insertion_sort(numbers, start_index, end_index)
+        slice_insertionsort(numbers, start_index, end_index)
         return
     # Partition the list segment
     high = partition(numbers, start_index, end_index)
 
     # Recursively sort the left segment
-    revised_quicksort(numbers, start_index, high, threshold)
+    revised_quick_sort(numbers, start_index, high, threshold)
 
     # Recursively sort the right segment
-    revised_quicksort(numbers, high + 1, end_index, threshold)
+    revised_quick_sort(numbers, high + 1, end_index, threshold)
