@@ -10,6 +10,7 @@ import cProfile
 import pstats
 import io
 import sys
+import pandas as pd
 
 LIST_SIZE = 50000
 MAX_VALUE = sys.maxsize
@@ -19,69 +20,81 @@ WORDS = open(word_file).read().splitlines()
 LIST_TYPE = "integer"
 
 
-def get_list():
-    if LIST_TYPE == "integer":
-        return list(np.random.randint(low=1, high=MAX_VALUE, size=LIST_SIZE))
-    elif LIST_TYPE == "float":
-        return list(np.random.random(size=LIST_SIZE))
-    elif LIST_TYPE == "string":
-        return list(np.random.choice(WORDS, size=5))
+def get_list(list_type, list_size):
+    if list_type == "integer":
+        return list(np.random.randint(low=1, high=MAX_VALUE, size=list_size))
+    elif list_type == "float":
+        return list(np.random.random(size=list_size))
+    elif list_type == "string":
+        return list(np.random.choice(WORDS, size=list_size))
 
 
-def mergesort_test():
-    sort_list = get_list()
-    mergesort.merge_sort(sort_list, 0, len(sort_list)-1)
+def run_single_test(algorithm, list_type, list_size):
+    sort_list = get_list(list_type, list_size)
+
+    pr = cProfile.Profile()
+    pr.enable()
+    if algorithm == "merge_sort":
+        mergesort.merge_sort(sort_list, 0, len(sort_list)-1)
+    elif algorithm == "quicksort":
+        quicksort.quick_sort(sort_list, 0, len(sort_list)-1)
+    elif algorithm == "revised_quicksort":
+        revised_quicksort.revised_quicksort(
+            sort_list, 0, len(sort_list)-1, 50)
+    elif algorithm == "shell_sort":
+        shellsort.shell_sort(sort_list, get_shellsort_gaps(list_size))
+
+    pr.disable()
+
+    s = io.StringIO()
+    ps = pstats.Stats(pr, stream=s).sort_stats("cumulative")
+    ps.strip_dirs().print_stats()
+
+    results = s.getvalue()
+    for line in results.splitlines():
+        if "_sort" in line:
+            split_line = line.strip().split("    ")
+            return(split_line[3])
 
 
-def quicksort_test():
-    sort_list = get_list()
-    quicksort.quicksort(sort_list, 0, len(sort_list)-1)
-
-
-def revised_quicksort_test():
-    sort_list = get_list()
-    revised_quicksort.revised_quicksort(sort_list, 0, len(sort_list)-1, 100)
-
-
-def shellsort_test():
-    sort_list = get_list()
-    shellsort.shell_sort(sort_list, get_shellsort_gaps())
-
-
-def insertionsort_test():
-    sort_list = list(np.random.randint(low=1, high=MAX_VALUE, size=LIST_SIZE))
-    insertionsort.insertion_sort(sort_list)
-
-
-def get_shellsort_gaps():
-    max_val = int(math.log(LIST_SIZE, 2))
+def get_shellsort_gaps(list_size):
+    max_val = int(math.log(list_size, 2))
     gaps = []
     for i in range(max_val, 0, -1):
         gaps.append((2**i)-1)
     return gaps
 
 
-def performtests():
-    insertionsort_test()
-    mergesort_test()
-    quicksort_test()
-    revised_quicksort_test()
-    shellsort_test()
+def run_tests():
+    results = []
+    for algorithm in ["merge_sort", "quicksort", "revised_quicksort", "shell_sort"]:
+        for list_type in ["integer", "float", "string"]:
+            for list_size in [100, 1000, 10000]:
+                time = run_single_test(algorithm, list_type, list_size)
+                results.append([algorithm,  list_type, list_size, time])
+
+    df = pd.DataFrame(results, columns=[
+                      "Algorithm", "List_Type", "List_Size", "Time"])
+    df.to_csv("test_results.csv")
 
 
-pr = cProfile.Profile()
-pr.enable()
-performtests()
-pr.disable()
+# print(run_single_test("merge_sort", "integer", 1000))
 
-s = io.StringIO()
-ps = pstats.Stats(pr, stream=s).sort_stats("cumulative")
-ps.strip_dirs().print_stats()
+run_tests()
 
-results = s.getvalue()
-for line in results.splitlines():
-    if "_test" in line:
-        print(line)
+# pr = cProfile.Profile()
+# pr.enable()
+# performtests()
+# pr.disable()
+
+# s = io.StringIO()
+# ps = pstats.Stats(pr, stream=s).sort_stats("cumulative")
+# ps.strip_dirs().print_stats()
+
+# results = s.getvalue()
+# for line in results.splitlines():
+#     if "_test" in line:
+#         print(line)
 
 
 # value = cProfile.run('shellsort_test()')

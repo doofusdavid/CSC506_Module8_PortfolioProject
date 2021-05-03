@@ -1,11 +1,37 @@
-Sort Method,Sort Datatype,CPU Time,List Size
-Merge Sort,Integer,0.025,5000
-Quicksort,Integer,0.013,5000
-Modified Quicksort,Integer,0.021,5000
-Shell Sort,Integer,0.039,5000
-Insertion Sort,Integer,1.989,5000
-Merge Sort,Integer,0.348,50000
-Quicksort,Integer,0.187,50000
-Modified Quicksort,Integer,0.286,50000
-Shell Sort,Integer,0.726,50000
-Insertion Sort,Integer,212.521,50000
+,Algorithm,List_Type,List_Size,Time
+0,merge_sort,integer,100,0.000
+1,merge_sort,integer,1000,0.004
+2,merge_sort,integer,10000,0.054
+3,merge_sort,float,100,0.000
+4,merge_sort,float,1000,0.004
+5,merge_sort,float,10000,0.051
+6,merge_sort,string,100,0.000
+7,merge_sort,string,1000,0.005
+8,merge_sort,string,10000,0.061
+9,quicksort,integer,100,0.000
+10,quicksort,integer,1000,0.003
+11,quicksort,integer,10000,0.029
+12,quicksort,float,100,0.000
+13,quicksort,float,1000,0.002
+14,quicksort,float,10000,0.029
+15,quicksort,string,100,0.000
+16,quicksort,string,1000,0.003
+17,quicksort,string,10000,0.030
+18,revised_quicksort,integer,100,0.000
+19,revised_quicksort,integer,1000,0.002
+20,revised_quicksort,integer,10000,0.017
+21,revised_quicksort,float,100,0.000
+22,revised_quicksort,float,1000,0.002
+23,revised_quicksort,float,10000,0.017
+24,revised_quicksort,string,100,0.000
+25,revised_quicksort,string,1000,0.002
+26,revised_quicksort,string,10000,0.019
+27,shell_sort,integer,100,0.000
+28,shell_sort,integer,1000,0.004
+29,shell_sort,integer,10000,0.076
+30,shell_sort,float,100,0.000
+31,shell_sort,float,1000,0.005
+32,shell_sort,float,10000,0.074
+33,shell_sort,string,100,0.000
+34,shell_sort,string,1000,0.005
+35,shell_sort,string,10000,0.079
