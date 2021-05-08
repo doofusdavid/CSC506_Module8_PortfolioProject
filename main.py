@@ -12,20 +12,16 @@ import io
 import sys
 import pandas as pd
 
-LIST_SIZE = 50000
-MAX_VALUE = sys.maxsize
-NUM_ITERATIONS = 20
-word_file = "/usr/share/dict/words"
-WORDS = open(word_file).read().splitlines()
-LIST_TYPE = "integer"
-
 
 def get_list(list_type, list_size):
     if list_type == "integer":
+        MAX_VALUE = sys.maxsize
         return list(np.random.randint(low=1, high=MAX_VALUE, size=list_size))
     elif list_type == "float":
         return list(np.random.random(size=list_size))
     elif list_type == "string":
+        word_file = "/usr/share/dict/words"
+        WORDS = open(word_file).read().splitlines()
         return list(np.random.choice(WORDS, size=list_size))
 
 
@@ -81,16 +77,17 @@ def run_tests():
 
 # print(run_single_test("merge_sort", "integer", 1000))
 
-run_tests()
+# run_tests()
 
-# pr = cProfile.Profile()
-# pr.enable()
-# performtests()
-# pr.disable()
+pr = cProfile.Profile()
+pr.enable()
+quicksort.quick_sort(get_list("integer", 10000), 0, 9999)
+pr.disable()
 
-# s = io.StringIO()
-# ps = pstats.Stats(pr, stream=s).sort_stats("cumulative")
-# ps.strip_dirs().print_stats()
+s = io.StringIO()
+ps = pstats.Stats(pr, stream=s).sort_stats("cumulative")
+ps.strip_dirs().print_stats()
+print(s.getvalue())
 
 # results = s.getvalue()
 # for line in results.splitlines():
